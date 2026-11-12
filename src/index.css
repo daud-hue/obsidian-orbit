@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 91%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 91%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 91%;
+    --primary: 0 0% 91%;
+    --primary-foreground: 240 6% 10%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 91%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 58%;
+    --accent: 0 0% 14%;
+    --accent-foreground: 0 0% 91%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 0 0% 60%;
+    --radius: 0.75rem;
+    --font-heading: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    /* METALLIC STRATA tokens */
+    --obsidian: #08080A;
+    --chrome-1: #FFFFFF;
+    --chrome-2: #A0A0AB;
+    --chrome-3: #D1D1D6;
+    --silver: #E5E5E7;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #08080A;
+    color: hsl(var(--foreground));
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Metallic chrome text — gradient clip with shimmer */
+  .metallic-text {
+    background: linear-gradient(180deg, #FFFFFF 0%, #D1D1D6 38%, #A0A0AB 55%, #E5E5E7 78%, #6E6E76 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0 0 18px rgba(229, 229, 231, 0.18);
+    letter-spacing: -0.02em;
+  }
+
+  .metallic-text-sm {
+    background: linear-gradient(180deg, #FFFFFF 0%, #C4C4CC 50%, #8A8A92 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: 0 0 10px rgba(229, 229, 231, 0.15);
+    letter-spacing: -0.01em;
+  }
+
+  /* Frosted glass surface */
+  .glass-surface {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 0.5px solid rgba(255, 255, 255, 0.09);
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.8), inset 0 0 8px rgba(229, 229, 231, 0.06);
+  }
+
+  /* Glass button with light shadow */
+  .glass-button {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 0.5px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.8), 0px 0px 8px rgba(229, 229, 231, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-button:hover {
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0px 24px 48px rgba(0, 0, 0, 0.85), 0px 0px 16px rgba(229, 229, 231, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  /* Liquid chrome top border */
+  .chrome-border-top {
+    border-top: 0.5px solid transparent;
+    border-image: linear-gradient(90deg, transparent, #FFFFFF, #A0A0AB, #FFFFFF, transparent) 1;
+  }
+
+  /* Mercury shimmer hover */
+  .mercury-hover {
+    position: relative;
+    overflow: hidden;
+  }
+  .mercury-hover::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -120%;
+    width: 60%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(229,229,231,0.35), transparent);
+    transform: skewX(-18deg);
+    transition: left 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .mercury-hover:hover::after {
+    left: 140%;
+  }
+
+  /* Slow rotation for ambient rings */
+  .spin-slow {
+    animation: spin-slow 40s linear infinite;
+  }
+  .spin-slow-rev {
+    animation: spin-slow 60s linear infinite reverse;
+  }
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .shimmer-flow {
+    background-size: 200% 100%;
+    animation: shimmer 4s linear infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+}
+
+@layer utilities {
+  .obsidian-bg {
+    background: radial-gradient(120% 120% at 50% 0%, #101013 0%, #08080A 55%, #050506 100%);
+  }
+  .text-shadow-chrome {
+    text-shadow: 0 0 16px rgba(229, 229, 231, 0.22);
+  }
+}
